@@ -903,7 +903,7 @@ def dashboard_2():
 # DASHBOARD 3
 # -------------------------
 
-BASE_DIR = r"C:\Users\MSI-NB\Desktop\src\lresults"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 RESULT_FILES = {
     "Plant 1": {
