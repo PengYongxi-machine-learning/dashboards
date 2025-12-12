@@ -785,7 +785,11 @@ def dashboard_2():
     # ---------------------------------------------------------
     # Prediction Section
     # ---------------------------------------------------------
-    st.subheader("Enter Feature Values for Prediction")
+    st.markdown("---")
+    st.subheader("🤖 Prediction")
+    st.write(" ")
+    st.write("### Base Features")
+    
     if plant == 'Plant1':
         i =14000.0
     elif plant == 'Plant2':
@@ -804,7 +808,7 @@ def dashboard_2():
 
     for i, feat in enumerate(base_features):
             with cols[i % 3]:
-                st.markdown(f"#### {feat}")
+                st.markdown(f"##### {feat}")
 
                 # ----- SLIDER -----
                 lo, hi = slider_ranges.get(feat, (0.0, 2000.0))
@@ -827,7 +831,7 @@ def dashboard_2():
                 
     if show_ac_slider:
         with cols[0]:
-            st.markdown("### AC_CLEAN")
+            st.markdown("##### AC_CLEAN")
             inputs["AC_CLEAN"] = st.slider("", 0.0, 1400.0, 700.0, key="slider_AC_CLEAN")
             
     elif "AC_CLEAN" not in base_features:
@@ -839,7 +843,7 @@ def dashboard_2():
 
     if not show_ac_slider:
         st.write("### Additional Features")
-        
+        st.write(" ")
     # -- First row: numeric values
     if not show_ac_slider: 
         num_cols = st.columns(3)
@@ -887,6 +891,8 @@ def dashboard_2():
     # -------------------------
     # Tabs
     # -------------------------
+    st.markdown("---")
+    st.header("🧾 Performance metrics")
     tab1, tab2, tab3, tab4 = st.tabs(["Confusion Matrix", "Metrics", "SVM Score Distribution", "Feature Importance (Drop-Column)"])
 
     with tab1:
@@ -921,7 +927,7 @@ def dashboard_2():
     # Threshold Explorer
     # -------------------------
     st.markdown("---")
-    st.header("Threshold Explorer (Interactive)")
+    st.header("🎚 Threshold Explorer ")
 
     X_te_df = pd.DataFrame(m["X_te"], columns=features)
     y_true = m["y_te"]
