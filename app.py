@@ -788,7 +788,7 @@ def dashboard_2():
     st.markdown("---")
     st.header("🤖 Prediction")
     st.write(" ")
-    st.write("### Base Features")
+    st.write("### (1) Base Features")
     st.write(" ")
     
     if plant == 'Plant1':
@@ -809,7 +809,8 @@ def dashboard_2():
 
     for i, feat in enumerate(base_features):
             with cols[i % 3]:
-                st.markdown(f"##### {feat}")
+                # st.markdown(f"##### {feat}")
+                st.markdown(f"<div style='text-align: center; font-size: 16px; font-weight: 600;'>{feat}</div>", unsafe_allow_html=True)
 
                 # ----- SLIDER -----
                 lo, hi = slider_ranges.get(feat, (0.0, 2000.0))
@@ -832,6 +833,8 @@ def dashboard_2():
                 
     if show_ac_slider:
         with cols[0]:
+            st.markdown("### Additional Features")
+            st.markdown("")
             st.markdown("##### AC_CLEAN")
             inputs["AC_CLEAN"] = st.slider("", 0.0, 1400.0, 700.0, key="slider_AC_CLEAN")
             
@@ -843,7 +846,7 @@ def dashboard_2():
     inputs["AC/IRRA"] = inputs.get("AC_CLEAN", 0.0) / (irr + 1e-6)
 
     if not show_ac_slider:
-        st.write("### Additional Features")
+        st.write("### (2) Additional Features")
         st.write(" ")
     # -- First row: numeric values
     if not show_ac_slider: 
