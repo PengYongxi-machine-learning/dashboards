@@ -835,7 +835,7 @@ def dashboard_2():
         with cols[0]:
             st.markdown("### Additional Features")
             st.markdown("")
-            st.markdown("##### AC_CLEAN")
+            st.markdown("<div style='text-align:center; font-size:16px; font-weight:600;'>AC_CLEAN</div>", unsafe_allow_html=True)
             inputs["AC_CLEAN"] = st.slider("", 0.0, 1400.0, 700.0, key="slider_AC_CLEAN")
             
     elif "AC_CLEAN" not in base_features:
@@ -852,15 +852,15 @@ def dashboard_2():
     if not show_ac_slider: 
         num_cols = st.columns(3)
         with num_cols[0]:
-            st.markdown(f"##### DC/IRRA: {inputs['DC/IRRA']:.4f}")
+            st.markdown(f"<div style='text-align:center; font-size:16px; font-weight:600;'>DC/IRRA: {inputs['DC/IRRA']:.4f}</div>",unsafe_allow_html=True)
         with num_cols[1]:
-            st.markdown(f"##### AC/IRRA: {inputs['AC/IRRA']:.4f}")
+            st.markdown(f"<div style='text-align:center; font-size:16px; font-weight:600;'>AC/IRRA: {inputs['AC/IRRA']:.4f}</div>",unsafe_allow_html=True)
         with num_cols[2]:
             st.empty()
     else:
         num_cols = st.columns(1)
         with num_cols[0]:
-            st.markdown(f"##### AC/IRRA: {inputs['AC/IRRA']:.4f}")
+            st.markdown(f"<div style='text-align:center; font-size:16px; font-weight:600;'>AC/IRRA: {inputs['AC/IRRA']:.4f}</div>",unsafe_allow_html=True)
 
         # -- Second row: ALE plots
     if not show_ac_slider:
