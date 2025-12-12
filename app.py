@@ -946,7 +946,7 @@ def dashboard_2():
     r = recall_score(y_true, pred_user, zero_division=0)
     f1 = f1_score(y_true, pred_user, zero_division=0)
     cm_u = confusion_matrix(y_true, pred_user)
-    
+    st.write(" ")
     c1, c2, c3 = st.columns(3)
     with c1:
         st.write("###### Precision")
@@ -957,7 +957,7 @@ def dashboard_2():
         st.metric("", f"{r:.3f}")
 
     with c3:
-        st.write("######F1 Score**")
+        st.write("######F1 Score")
         st.metric("", f"{f1:.3f}")
     #c1.metric("Precision", f"{p:.3f}")
     #c2.metric("Recall", f"{r:.3f}")
