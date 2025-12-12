@@ -922,34 +922,34 @@ def dashboard_2():
         mn, mx = drop_df["importance"].min(), drop_df["importance"].max()
         fig.update_yaxes(range=[mn - abs(mn) * 2, mx + abs(mx) * 0.2])
         st.plotly_chart(apply_plot_style(fig), use_container_width=True)
-        # -------------------------
-        # Threshold Explorer
-        # -------------------------
-        st.markdown("---")
-        st.header("Threshold Explorer (Interactive)")
+    # -------------------------
+    # Threshold Explorer
+    # -------------------------
+    st.markdown("---")
+    st.header("Threshold Explorer (Interactive)")
 
-        X_te_df = pd.DataFrame(m["X_te"], columns=features)
-        y_true = m["y_te"]
-        scores = svm.decision_function(X_te_df)
+    X_te_df = pd.DataFrame(m["X_te"], columns=features)
+    y_true = m["y_te"]
+    scores = svm.decision_function(X_te_df)
 
-        thr_user = st.slider("Adjust Threshold", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01)
-        pred_user = (scores >= thr_user).astype(int)
+    thr_user = st.slider("Adjust Threshold", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01)
+    pred_user = (scores >= thr_user).astype(int)
 
-        p = precision_score(y_true, pred_user, zero_division=0)
-        r = recall_score(y_true, pred_user, zero_division=0)
-        f1 = f1_score(y_true, pred_user, zero_division=0)
-        cm_u = confusion_matrix(y_true, pred_user)
+    p = precision_score(y_true, pred_user, zero_division=0)
+    r = recall_score(y_true, pred_user, zero_division=0)
+    f1 = f1_score(y_true, pred_user, zero_division=0)
+    cm_u = confusion_matrix(y_true, pred_user)
 
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Precision", f"{p:.3f}")
-        c2.metric("Recall", f"{r:.3f}")
-        c3.metric("F1 Score", f"{f1:.3f}")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Precision", f"{p:.3f}")
+    c2.metric("Recall", f"{r:.3f}")
+    c3.metric("F1 Score", f"{f1:.3f}")
         
-        st.subheader("Updated Score Distribution")
-        st.plotly_chart(make_hist(scores, y_true, thr_user), use_container_width=True, key="threshold_hist")
+    st.subheader("Updated Score Distribution")
+    st.plotly_chart(make_hist(scores, y_true, thr_user), use_container_width=True, key="threshold_hist")
 
-        st.subheader("Updated Confusion Matrix")
-        st.plotly_chart(apply_plot_style(make_cm_fig(cm_u)), use_container_width=True, key="threshold_cm")
+    st.subheader("Updated Confusion Matrix")
+    st.plotly_chart(apply_plot_style(make_cm_fig(cm_u)), use_container_width=True, key="threshold_cm")
 
 
 # -------------------------
