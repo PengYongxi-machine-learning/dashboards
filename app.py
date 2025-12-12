@@ -938,7 +938,7 @@ def dashboard_2():
     scores = svm.decision_function(X_te_df)
 
     st.markdown(" ####### Adjust Threshold")
-    thr_user = st.slider("", min_val, max_val, thr, step=0.01, label_visibility="collapsed")
+    thr_user = st.slider("", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01, label_visibility="collapsed")
     # thr_user = st.slider("Adjust Threshold", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01)
     pred_user = (scores >= thr_user).astype(int)
 
