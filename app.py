@@ -948,17 +948,24 @@ def dashboard_2():
     cm_u = confusion_matrix(y_true, pred_user)
     st.write(" ")
     c1, c2, c3 = st.columns(3)
+    
+    def compact_metric(label, value):
+        st.markdown(f"""<div style="text-align:center; line-height:1.1;"><div style="font-size:16px; font-weight:600; margin-bottom:4px;"> {label}</div>
+                <div style="font-size:40px; font-weight:700;">
+                    {value}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True)
     with c1:
-        st.write("###### Precision")
-        st.metric("", f"{p:.3f}")
+        compact_metric("Precision", f"{p:.3f}")
 
     with c2:
-        st.write("###### Recall")
-        st.metric("", f"{r:.3f}")
+        compact_metric("Recall", f"{r:.3f}")
 
     with c3:
-        st.write("######F1 Score")
-        st.metric("", f"{f1:.3f}")
+        compact_metric("F1 Score", f"{f1:.3f}")
+
     #c1.metric("Precision", f"{p:.3f}")
     #c2.metric("Recall", f"{r:.3f}")
     #c3.metric("F1 Score", f"{f1:.3f}")
