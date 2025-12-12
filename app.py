@@ -948,9 +948,20 @@ def dashboard_2():
     cm_u = confusion_matrix(y_true, pred_user)
     
     c1, c2, c3 = st.columns(3)
-    c1.metric("Precision", f"{p:.3f}")
-    c2.metric("Recall", f"{r:.3f}")
-    c3.metric("F1 Score", f"{f1:.3f}")
+    with c1:
+        st.write("###### Precision")
+        st.metric("", f"{p:.3f}")
+
+    with c2:
+        st.write("###### Recall")
+        st.metric("", f"{r:.3f}")
+
+    with c3:
+        st.write("######F1 Score**")
+        st.metric("", f"{f1:.3f}")
+    #c1.metric("Precision", f"{p:.3f}")
+    #c2.metric("Recall", f"{r:.3f}")
+    #c3.metric("F1 Score", f"{f1:.3f}")
         
     st.subheader("Updated Score Distribution")
     st.plotly_chart(make_hist(scores, y_true, thr_user), use_container_width=True, key="threshold_hist")
