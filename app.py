@@ -658,7 +658,7 @@ def apply_plot_style(fig, axis_title_size=16, tick_size=16, legend_size=16):
     fig.update_yaxes(tickfont={"size": tick_size})
     return fig
 
-def draw_ale_mini_plot1(ale_df, feature, current_val):
+def draw_ale_mini_plot(ale_df, feature, current_val):
     df = ale_df[ale_df["feature"] == feature]
     if df.empty:
         return go.Figure()
@@ -671,27 +671,6 @@ def draw_ale_mini_plot1(ale_df, feature, current_val):
     fig.update_xaxes(visible=False)
     fig.update_yaxes(title=None, nticks=5, showgrid=True, tickfont=dict(size=12, color="white"), tickformat=".2f")
     return fig
-    
-def draw_ale_mini_plot(ale_df, feature, current_val):
-    df = ale_df[ale_df["feature"] == feature]
-    if df.empty:
-        return go.Figure()
-
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=df["x"], y=df["ale"], mode="lines", line=dict(color="blue", width=2), showlegend=False,))
-
-    i = (df["x"] - current_val).abs().idxmin()
-    fig.add_trace(go.Scatter(x=[df.at[i, "x"]], y=[df.at[i, "ale"]], mode="markers", marker=dict(color="white", size=10), showlegend=False,))
-
-    # FIX: force symmetric y-axis (no semantic change)
-    y = max(abs(df["ale"].min()), abs(df["ale"].max())) * 1.2
-    fig.update_yaxes(range=[-y, y])
-
-    fig.update_layout(height=120, margin=dict(l=20, r=20, t=10, b=10))
-    fig.update_xaxes(visible=False)
-    fig.update_yaxes(title=None,nticks=5,showgrid=True,tickfont=dict(size=12, color="white"),tickformat=".2f",)
-    return fig
-
 
 def make_cm_fig(cm):
     fig = px.imshow(cm,text_auto=True,color_continuous_scale="Blues",x=["Predict Optimal", "Predict Suboptimal"],y=["Actual Optimal", "Actual Suboptimal"],)
@@ -830,7 +809,7 @@ def dashboard_2():
                 lo, hi = slider_ranges.get(feat, (0.0, 2000.0))
                 slider_key = f"slider_{feat}"
 
-                val = st.slider( "",float(lo), float(hi),float((lo + hi) / 2), key=slider_key,)
+                val = st.slider( "",float(lo), float(hi),float((lo + hi) / 2), format="%.2f", key=slider_key,)
                 inputs[feat] = val
 
                 fig_key = f"ale_fig_{feat}"
