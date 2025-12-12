@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.metrics import f1_score, confusion_matrix, precision_score, recall_score
-from utils import load_all_models, predict_label
+from utils import predict_label
 import nbformat
 import joblib
 import os
