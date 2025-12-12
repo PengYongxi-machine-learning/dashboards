@@ -951,21 +951,21 @@ def dashboard_2():
     c1, c2, c3 = st.columns(3)
     
     def compact_metric(label, value):
-        st.markdown(f"""<div style="text-align:center; line-height:1.4;"><div style="font-size:20px; font-weight:600; margin-bottom:4px;"> {label}</div>
-                <div style="font-size:18px; font-weight:700;">
+        st.markdown(f"""<div style="text-align:center; line-height:2;"><div style="font-size:35px; font-weight:600; margin-bottom:4px;"> {label}</div>
+                <div style="font-size:40px; font-weight:700;">
                     {value}
                 </div>
             </div>
             """,
             unsafe_allow_html=True)
     with c1:
-        compact_metric("Precision", f"{p:.3f}")
+        compact_metric("Precision :", f"{p:.3f}")
 
     with c2:
-        compact_metric("Recall", f"{r:.3f}")
+        compact_metric("Recall :", f"{r:.3f}")
 
     with c3:
-        compact_metric("F1 Score", f"{f1:.3f}")
+        compact_metric("F1 Score :", f"{f1:.3f}")
 
     #c1.metric("Precision", f"{p:.3f}")
     #c2.metric("Recall", f"{r:.3f}")
