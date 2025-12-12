@@ -671,11 +671,6 @@ def draw_ale_mini_plot(ale_df, feature, current_val):
     fig.update_xaxes(visible=False)
     fig.update_yaxes(title=None, nticks=5, showgrid=True, tickfont=dict(size=12, color="white"), tickformat=".2f")
 
-    # fix ambient temperature layout
-    if feature == "AMBIENT_TEMPERATURE":
-        fig.update_yaxes(showticklabels=False,showgrid=False,automargin=False,constrain="domain",)
-    else:
-        fig.update_yaxes(title=None,nticks=5,showgrid=True,tickfont=dict(size=12, color="white"),tickformat=".2f",)
     return fig
 
 def make_cm_fig(cm):
@@ -809,7 +804,7 @@ def dashboard_2():
 
     for i, feat in enumerate(base_features):
             with cols[i % 3]:
-                st.markdown(f"### {feat}")
+                st.markdown(f"#### {feat}")
 
                 # ----- SLIDER -----
                 lo, hi = slider_ranges.get(feat, (0.0, 2000.0))
