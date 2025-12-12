@@ -786,24 +786,20 @@ def dashboard_2():
     # Prediction Section
     # ---------------------------------------------------------
     st.subheader("Enter Feature Values for Prediction")
-
-    if plant == "plant2":
-        u = 2300000000.0
-        l = 0.0
-    else:
-        u = 6490000.0
-        l = 6430000.0
-
+    if plant == 'Plant1':
+        i =14000.0
+    elif plant == 'Plant2':
+        i = 1400.0
+        
     slider_ranges = {
-        "AC_CLEAN": (0.0, 1400.0), "DC_CLEAN": (0.0, 1400.0),
+        "AC_CLEAN": (0.0, 1400.0), "DC_CLEAN": (0.0, i),
         "IRRADIATION_CLEAN": (0.0, 1.20), "DAILY_YIELD_CLEAN": (0.0, 10000.0),
-        "TOTAL_YIELD_CLEAN": (l, u), "AMBIENT_TEMPERATURE": (0.0, 40.0),
+        "TOTAL_YIELD_CLEAN": (0, 2500000000), "AMBIENT_TEMPERATURE": (0.0, 40.0),
         "MODULE_TEMPERATURE": (0.0, 70.0),}
 
     cols = st.columns(3)
     inputs = {}
     base_features = [f for f in features if f not in ["DC/IRRA", "AC/IRRA"]]
-    ale_min, ale_max = ale_df["ale"].min() * 1.2, ale_df["ale"].max()*1.2
     show_ac_slider = (plant == "Plant2" and version == "v2")
 
     for i, feat in enumerate(base_features):
