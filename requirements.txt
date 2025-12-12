@@ -1,9 +1,0 @@
-streamlit
-numpy
-pandas
-scikit-learn
-plotly
-joblib
-matplotlib
-PyALE
-nbformat
