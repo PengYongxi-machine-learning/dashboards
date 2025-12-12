@@ -658,7 +658,7 @@ def apply_plot_style(fig, axis_title_size=16, tick_size=16, legend_size=16):
     fig.update_yaxes(tickfont={"size": tick_size})
     return fig
 
-def draw_ale_mini_plot(ale_df, feature, current_val):
+def draw_ale_mini_plot1(ale_df, feature, current_val):
     df = ale_df[ale_df["feature"] == feature]
     if df.empty:
         return go.Figure()
@@ -670,6 +670,26 @@ def draw_ale_mini_plot(ale_df, feature, current_val):
     fig.update_layout(height=120, margin=dict(l=20, r=20, t=10, b=10))
     fig.update_xaxes(visible=False)
     fig.update_yaxes(title=None, nticks=5, showgrid=True, tickfont=dict(size=12, color="white"), tickformat=".2f")
+    return fig
+    
+def draw_ale_mini_plot(ale_df, feature, current_val):
+    df = ale_df[ale_df["feature"] == feature]
+    if df.empty:
+        return go.Figure()
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df["x"], y=df["ale"], mode="lines", line=dict(color="blue", width=2), showlegend=False,))
+
+    i = (df["x"] - current_val).abs().idxmin()
+    fig.add_trace(go.Scatter(x=[df.at[i, "x"]], y=[df.at[i, "ale"]], mode="markers", marker=dict(color="white", size=10), showlegend=False,))
+
+    # FIX: force symmetric y-axis (no semantic change)
+    y = max(abs(df["ale"].min()), abs(df["ale"].max())) * 1.2
+    fig.update_yaxes(range=[-y, y])
+
+    fig.update_layout(height=120, margin=dict(l=20, r=20, t=10, b=10))
+    fig.update_xaxes(visible=False)
+    fig.update_yaxes(title=None,nticks=5,showgrid=True,tickfont=dict(size=12, color="white"),tickformat=".2f",)
     return fig
 
 
@@ -824,9 +844,7 @@ def dashboard_2():
                 # Always recompute ALE plot for correct model/state
                 fig = draw_ale_mini_plot(ale_df, feat, val)
                 st.plotly_chart(fig, use_container_width=True)
-                fig.update_layout(margin=dict(l=20, r=20, t=10, b=20))
-        
-
+                
     if show_ac_slider:
         with cols[0]:
             st.markdown("### AC_CLEAN")
