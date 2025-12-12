@@ -17,7 +17,7 @@ import os
 # =====================================================================
 # 🗂 BASE DIRECTORY FOR ALL DATA
 # =====================================================================
-DATA_ROOT = r"C:\Users\MSI-NB\Desktop\src"
+DATA_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # =====================================================================
 # 🌞 TASK 3 OUTPUTS (INVERTER RESULTS)
