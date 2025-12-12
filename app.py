@@ -787,8 +787,7 @@ def dashboard_2():
     # ---------------------------------------------------------
     st.markdown("---")
     st.header("🤖 Prediction")
-    st.write(" ")
-    st.write("### (1) Base Features")
+    st.write("#### ▫️ Base Features")
     st.write(" ")
     
     if plant == 'Plant1':
@@ -846,7 +845,7 @@ def dashboard_2():
     inputs["AC/IRRA"] = inputs.get("AC_CLEAN", 0.0) / (irr + 1e-6)
 
     if not show_ac_slider:
-        st.write("### (2) Additional Features")
+        st.write("#### ▫️ Additional Features")
         st.write(" ")
     # -- First row: numeric values
     if not show_ac_slider: 
