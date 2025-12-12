@@ -971,10 +971,10 @@ def dashboard_2():
     #c2.metric("Recall", f"{r:.3f}")
     #c3.metric("F1 Score", f"{f1:.3f}")
     st.write(" ")    
-    st.subheader("Updated Score Distribution")
+    st.subheader("▫️ Score Distribution")
     st.plotly_chart(make_hist(scores, y_true, thr_user), use_container_width=True, key="threshold_hist")
 
-    st.subheader("Updated Confusion Matrix")
+    st.subheader("▫️ Confusion Matrix")
     st.plotly_chart(apply_plot_style(make_cm_fig(cm_u)), use_container_width=True, key="threshold_cm")
 
 
