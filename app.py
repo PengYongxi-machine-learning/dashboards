@@ -937,7 +937,7 @@ def dashboard_2():
     y_true = m["y_te"]
     scores = svm.decision_function(X_te_df)
 
-    st.markdown(" ####### Adjust Threshold")
+    st.write(" ####### Adjust Threshold")
     thr_user = st.slider("", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01, label_visibility="collapsed")
     # thr_user = st.slider("Adjust Threshold", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01)
     pred_user = (scores >= thr_user).astype(int)
@@ -947,25 +947,10 @@ def dashboard_2():
     f1 = f1_score(y_true, pred_user, zero_division=0)
     cm_u = confusion_matrix(y_true, pred_user)
     
-    def styled_metric(label, value, size=16):
-        st.markdown(
-        f"<div style='text-align:center;'>"
-        f"<div style='font-size:{size}px; font-weight:600;'>{label}</div>"
-        f"<div style='font-size:{size+4}px; font-weight:700;'>{value}</div>"
-        f"</div>",
-        unsafe_allow_html=True)
-    with c1:
-        styled_metric("Precision", f"{p:.3f}")
-
-    with c2:
-        styled_metric("Recall", f"{r:.3f}")
-
-    with c3:
-        styled_metric("F1 Score", f"{f1:.3f}")
-    #c1, c2, c3 = st.columns(3)
-    #c1.metric("Precision", f"{p:.3f}")
-    #c2.metric("Recall", f"{r:.3f}")
-    #c3.metric("F1 Score", f"{f1:.3f}")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Precision", f"{p:.3f}")
+    c2.metric("Recall", f"{r:.3f}")
+    c3.metric("F1 Score", f"{f1:.3f}")
         
     st.subheader("Updated Score Distribution")
     st.plotly_chart(make_hist(scores, y_true, thr_user), use_container_width=True, key="threshold_hist")
