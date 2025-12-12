@@ -937,7 +937,7 @@ def dashboard_2():
     y_true = m["y_te"]
     scores = svm.decision_function(X_te_df)
 
-    st.write("#### ▫️ Adjust Threshold :")
+    st.write("#### ▫️ Adjust Threshold")
     thr_user = st.slider("", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01, label_visibility="collapsed")
     # thr_user = st.slider("Adjust Threshold", float(np.min(scores)), float(np.max(scores)), float(thr), step=0.01)
     pred_user = (scores >= thr_user).astype(int)
@@ -952,8 +952,8 @@ def dashboard_2():
     c1, c2, c3 = st.columns(3)
     
     def compact_metric(label, value):
-        st.markdown(f"""<div style="text-align:center; line-height:2;"><div style="font-size:30px; font-weight:600; margin-bottom:4px;"> {label}</div>
-                <div style="font-size:32px; font-weight:700;">
+        st.markdown(f"""<div style="text-align:center; line-height:2;"><div style="font-size:28px; font-weight:600; margin-bottom:4px;"> {label}</div>
+                <div style="font-size:28px; font-weight:700;">
                     {value}
                 </div>
             </div>
