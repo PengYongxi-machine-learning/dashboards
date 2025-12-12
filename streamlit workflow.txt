@@ -1,0 +1,11 @@
+cd C:\Users\MSI-NB\Desktop\src
+python -m venv venv
+venv\Scripts\activate.bat
+pip install -r requirements.txt
+streamlit run app.py
+
+cd C:\Users\MSI-NB\Desktop\classdash
+python -m venv venv
+venv\Scripts\activate.bat
+pip install -r requirements.txt
+streamlit run apps.py
