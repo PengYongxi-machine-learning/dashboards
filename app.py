@@ -824,6 +824,7 @@ def dashboard_2():
                 # Always recompute ALE plot for correct model/state
                 fig = draw_ale_mini_plot(ale_df, feat, val)
                 st.plotly_chart(fig, use_container_width=True)
+                fig.update_layout(margin=dict(l=20, r=20, t=10, b=20))
         
 
     if show_ac_slider:
