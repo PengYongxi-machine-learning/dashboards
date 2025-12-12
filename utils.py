@@ -1309,24 +1309,6 @@ def train_all_inverters(plant: str, progress_callback=None, verbose: bool = Fals
 # -------------------------
 # DASHBOARD 2
 # -------------------------
-def load_all_models():
-    data, plants, versions = {}, ["plant1", "plant2"], ["nofs", "fs"]
-    for p in plants:
-        for v in versions:
-            k = f"{p}_{v}"
-            data[k] = {
-                "svm": joblib.load(f"cmodels/svm_{k}.pkl"),
-                "cm_svm": np.load(f"cresults/confusion_svm_{k}.npy"),
-                "metrics": pd.read_csv(f"cresults/metrics_{k}.csv"),
-                "features": np.load(f"cresults/features_{k}.npy", allow_pickle=True),
-                "threshold": float(pd.read_csv(f"cresults/thresholds_{k}.csv")["threshold"].iloc[0]),
-                "X_te": np.load(f"cresults/X_te_{k}.npy"),
-                "y_te": np.load(f"cresults/y_te_{k}.npy"),
-                "drop_importance": pd.read_csv(f"cresults/drop_column_importance_{k}.csv"),
-                "ale": pd.read_csv(f"cresults/ale_{k}.csv"),}
-    return data
-
-
 def predict_label(svm, X_input, thr: float):
     score = float(svm.decision_function(X_input))
     label = 1 if score >= thr else 0
