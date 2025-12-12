@@ -849,15 +849,15 @@ def dashboard_2():
     if not show_ac_slider: 
         num_cols = st.columns(3)
         with num_cols[0]:
-            st.write(f"**##### DC/IRRA:** {inputs['DC/IRRA']:.4f}")
+            st.markdown(f"##### DC/IRRA: {inputs['DC/IRRA']:.4f}")
         with num_cols[1]:
-            st.write(f"**##### AC/IRRA:** {inputs['AC/IRRA']:.4f}")
+            st.markdown(f"##### AC/IRRA: {inputs['AC/IRRA']:.4f}")
         with num_cols[2]:
             st.empty()
     else:
         num_cols = st.columns(1)
         with num_cols[0]:
-            st.write(f"**##### AC/IRRA:** {inputs['AC/IRRA']:.4f}")
+            st.markdown(f"##### AC/IRRA: {inputs['AC/IRRA']:.4f}")
 
         # -- Second row: ALE plots
     if not show_ac_slider:
